@@ -1,0 +1,8 @@
+# Request: trigger one vision query from arm side
+bool trigger
+---
+# Response: target pose in camera frame (meters)
+bool success
+float64 x
+float64 y
+float64 z

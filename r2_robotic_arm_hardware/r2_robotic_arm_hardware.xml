@@ -1,0 +1,9 @@
+<library path="r2_robotic_arm_hardware">
+  <class name="r2_robotic_arm_hardware/R2RoboticArmHardware"
+         type="r2_robotic_arm_hardware::R2RoboticArmHardware"
+         base_class_type="hardware_interface::SystemInterface">
+    <description>
+      ros2_control hardware interface for R2 Robotic Arm.
+    </description>
+  </class>
+</library>

@@ -1,0 +1,3 @@
+[console_scripts]
+main_mal_3D = rc_kfs.main_mal_3D:main
+

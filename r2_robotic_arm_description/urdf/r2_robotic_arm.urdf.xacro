@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<robot name="r2_robotic_arm" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:arg name="can_interface" default="can0"/>
+  <xacro:arg name="can_fd" default="true"/>
+  <xacro:arg name="kp1" default="70.0"/>
+  <xacro:arg name="kp2" default="70.0"/>
+  <xacro:arg name="kp3" default="70.0"/>
+  <xacro:arg name="kp4" default="60.0"/>
+  <xacro:arg name="kp5" default="10.0"/>
+  <xacro:arg name="kd1" default="2.75"/>
+  <xacro:arg name="kd2" default="2.5"/>
+  <xacro:arg name="kd3" default="2.0"/>
+  <xacro:arg name="kd4" default="2.0"/>
+  <xacro:arg name="kd5" default="0.7"/>
+  <xacro:arg name="use_mock_hardware" default="false"/>
+  <!-- joint_3 transmission: lead in meters per screw revolution,
+       gear_ratio = motor_turns / screw_turns -->
+  <xacro:arg name="joint3_lead_m" default="0.012"/>
+  <xacro:arg name="joint3_gear_ratio" default="1.0"/>
+
+  <xacro:include filename="$(find r2_robotic_arm_description)/urdf/r2_robotic_arm_base.urdf.xacro"/>
+  <xacro:r2_robotic_arm_base/>
+
+  <ros2_control name="r2_arm_system" type="system">
+    <hardware>
+      <xacro:if value="$(arg use_mock_hardware)">
+        <plugin>mock_components/GenericSystem</plugin>
+      </xacro:if>
+      <xacro:unless value="$(arg use_mock_hardware)">
+        <plugin>r2_robotic_arm_hardware/R2RoboticArmHardware</plugin>
+        <param name="can_interface">$(arg can_interface)</param>
+        <param name="can_fd">$(arg can_fd)</param>
+        <param name="kp1">$(arg kp1)</param>
+        <param name="kp2">$(arg kp2)</param>
+        <param name="kp3">$(arg kp3)</param>
+        <param name="kp4">$(arg kp4)</param>
+        <param name="kp5">$(arg kp5)</param>
+        <param name="kd1">$(arg kd1)</param>
+        <param name="kd2">$(arg kd2)</param>
+        <param name="kd3">$(arg kd3)</param>
+        <param name="kd4">$(arg kd4)</param>
+        <param name="kd5">$(arg kd5)</param>
+        <param name="joint3_lead_m">$(arg joint3_lead_m)</param>
+        <param name="joint3_gear_ratio">$(arg joint3_gear_ratio)</param>
+      </xacro:unless>
+    </hardware>
+
+    <joint name="joint_1">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="joint_2">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="joint_3">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="joint_4">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="joint_5">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+  </ros2_control>
+</robot>

@@ -1,0 +1,20 @@
+<package format="3">
+  <name>r2_robotic_arm_hardware</name>
+  <version>0.0.1</version>
+  <description>ros2_control hardware interface for R2 robotic arm over SocketCAN</description>
+  <maintainer email="you@example.com">Your Name</maintainer>
+  <license>BSD</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <depend>rclcpp</depend>
+  <depend>hardware_interface</depend>
+  <depend>pluginlib</depend>
+  <depend>rclcpp_lifecycle</depend>
+  <depend>r2_robotic_arm_can</depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+    <pluginlib plugin="${prefix}/r2_robotic_arm_hardware.xml"/>
+  </export>
+</package>
