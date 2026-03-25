@@ -1,11 +1,13 @@
-from setuptools import find_packages, setup
+from setuptools import setup
+from glob import glob
+import os
 
-package_name = 'rc_kfs'
+package_name = 'r2_kfs'
 
 setup(
     name=package_name,
     version='0.0.0',
-    packages=find_packages(exclude=['test']),
+    packages=[package_name],
     data_files=[
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
@@ -14,18 +16,13 @@ setup(
     install_requires=['setuptools'],
     zip_safe=True,
     maintainer='ray',
-    maintainer_email='3398451721@qq.com',
-    description='TODO: Package description',
-    license='TODO: License declaration',
-    extras_require={
-        'test': [
-            'pytest',
-        ],
-    },
+    maintainer_email='ray@example.com',
+    description='RealSense YOLO 3D Detection with Advanced Coordinate Transform (v2)',
+    license='Apache-2.0',
+    tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            # 格式：'命令名 = Python包名.模块名:入口函数'
-            'main_mal_3D = rc_kfs.main_mal_3D:main',
+            'main_mal_3D = r2_kfs.main_mal_3D:main',
         ],
     },
 )
